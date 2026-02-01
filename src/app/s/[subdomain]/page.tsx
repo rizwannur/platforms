@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getSubdomainData } from '@/lib/subdomains';
+import { getTenantData } from '@/lib/tenants';
 import { protocol, rootDomain } from '@/lib/utils';
 
 export async function generateMetadata({
@@ -10,7 +10,7 @@ export async function generateMetadata({
   params: Promise<{ subdomain: string }>;
 }): Promise<Metadata> {
   const { subdomain } = await params;
-  const subdomainData = await getSubdomainData(subdomain);
+  const subdomainData = await getTenantData(subdomain);
 
   if (!subdomainData) {
     return {
@@ -30,7 +30,7 @@ export default async function SubdomainPage({
   params: Promise<{ subdomain: string }>;
 }) {
   const { subdomain } = await params;
-  const subdomainData = await getSubdomainData(subdomain);
+  const subdomainData = await getTenantData(subdomain);
 
   if (!subdomainData) {
     notFound();
@@ -51,10 +51,10 @@ export default async function SubdomainPage({
         <div className="text-center">
           <div className="text-9xl mb-6">{subdomainData.emoji}</div>
           <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-            Welcome to {subdomain}.{rootDomain}
+            {subdomainData.title}
           </h1>
           <p className="mt-3 text-lg text-gray-600">
-            This is your custom subdomain page
+            {subdomainData.description}
           </p>
         </div>
       </div>
