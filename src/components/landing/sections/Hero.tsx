@@ -32,10 +32,12 @@ export function Hero({ heroStats }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <span className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm mb-6">
-            <IconBolt className="h-4 w-4 mr-2" />
-            Trusted by {heroStats?.total_users?.toLocaleString() || '1,250'}+ organizations worldwide
-          </span>
+          {heroStats?.total_users != null && (
+            <span className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm mb-6">
+              <IconBolt className="h-4 w-4 mr-2" />
+              Trusted by {heroStats.total_users.toLocaleString()}+ organizations worldwide
+            </span>
+          )}
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
             Small businesses.{' '}
             <span className="text-primary">Big connections.</span>
@@ -64,37 +66,49 @@ export function Hero({ heroStats }: HeroProps) {
           </Button>
         </motion.div>
 
-        {heroStats && (
+        {heroStats &&
+          (heroStats.total_amount_raised != null ||
+            heroStats.lives_impacted != null ||
+            heroStats.total_ngos != null ||
+            heroStats.partnerships_formed != null) && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16"
           >
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                {formatCurrency(heroStats.total_amount_raised ?? 0, 'USD').replace('.00', '')}
+            {heroStats.total_amount_raised != null && (
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                  {formatCurrency(heroStats.total_amount_raised, 'USD').replace('.00', '')}
+                </div>
+                <div className="text-sm text-muted-foreground">Total Funds Raised</div>
               </div>
-              <div className="text-sm text-muted-foreground">Total Funds Raised</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                {heroStats.lives_impacted?.toLocaleString() || '50K+'}
+            )}
+            {heroStats.lives_impacted != null && (
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                  {heroStats.lives_impacted.toLocaleString()}
+                </div>
+                <div className="text-sm text-muted-foreground">Lives Impacted</div>
               </div>
-              <div className="text-sm text-muted-foreground">Lives Impacted</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                {heroStats.total_ngos?.toLocaleString() || '500+'}
+            )}
+            {heroStats.total_ngos != null && (
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                  {heroStats.total_ngos.toLocaleString()}
+                </div>
+                <div className="text-sm text-muted-foreground">Verified NGOs</div>
               </div>
-              <div className="text-sm text-muted-foreground">Verified NGOs</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                {heroStats.partnerships_formed?.toLocaleString() || '180+'}
+            )}
+            {heroStats.partnerships_formed != null && (
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                  {heroStats.partnerships_formed.toLocaleString()}
+                </div>
+                <div className="text-sm text-muted-foreground">Partnerships</div>
               </div>
-              <div className="text-sm text-muted-foreground">Partnerships</div>
-            </div>
+            )}
           </motion.div>
         )}
       </div>

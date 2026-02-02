@@ -1,16 +1,6 @@
 import { create } from 'zustand';
 import type { LandingData, HeroStats, Testimonial } from '@/types/landing-page.types';
 
-const defaultHeroStats: HeroStats = {
-  total_users: 1250,
-  total_ngos: 500,
-  total_amount_raised: 2500000,
-  lives_impacted: 50000,
-  communities_served: 150,
-  projects_completed: 320,
-  partnerships_formed: 180,
-};
-
 type LandingPageState = {
   landingData: LandingData | null;
   heroStats: HeroStats | null;
@@ -25,7 +15,7 @@ type LandingPageState = {
 
 export const useLandingPageStore = create<LandingPageState>((set) => ({
   landingData: null,
-  heroStats: defaultHeroStats,
+  heroStats: null,
   testimonials: [],
   mobileMenuOpen: false,
   setLandingData: (data) => set({ landingData: data }),

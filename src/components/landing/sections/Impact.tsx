@@ -42,7 +42,7 @@ export function Impact({ heroStats }: ImpactProps) {
               <IconUsers className="h-8 w-8 text-primary" />
             </div>
             <div className="text-3xl font-bold text-primary mb-2">
-              {heroStats.lives_impacted?.toLocaleString() || '50K+'}
+              {heroStats.lives_impacted?.toLocaleString() ?? '—'}
             </div>
             <div className="text-background/80">Lives Impacted</div>
           </motion.div>
@@ -58,7 +58,7 @@ export function Impact({ heroStats }: ImpactProps) {
               <IconWorld className="h-8 w-8 text-primary" />
             </div>
             <div className="text-3xl font-bold text-primary mb-2">
-              {heroStats.communities_served?.toLocaleString() || '150+'}
+              {heroStats.communities_served?.toLocaleString() ?? '—'}
             </div>
             <div className="text-background/80">Communities Served</div>
           </motion.div>
@@ -74,7 +74,7 @@ export function Impact({ heroStats }: ImpactProps) {
               <IconTarget className="h-8 w-8 text-primary" />
             </div>
             <div className="text-3xl font-bold text-primary mb-2">
-              {heroStats.projects_completed?.toLocaleString() || '320+'}
+              {heroStats.projects_completed?.toLocaleString() ?? '—'}
             </div>
             <div className="text-background/80">Projects Completed</div>
           </motion.div>
@@ -90,7 +90,7 @@ export function Impact({ heroStats }: ImpactProps) {
               <IconUsers className="h-8 w-8 text-primary" />
             </div>
             <div className="text-3xl font-bold text-primary mb-2">
-              {heroStats.partnerships_formed?.toLocaleString() || '180+'}
+              {heroStats.partnerships_formed?.toLocaleString() ?? '—'}
             </div>
             <div className="text-background/80">Partnerships Formed</div>
           </motion.div>

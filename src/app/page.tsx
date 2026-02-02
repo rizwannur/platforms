@@ -34,7 +34,7 @@ export default function HomePage() {
       <TrendingCampaigns campaigns={landingData?.trending_data?.trending_campaigns} />
       <Impact heroStats={heroStats} />
       <Testimonials testimonials={testimonials} />
-      <TrustSecurity heroStats={heroStats} />
+      <TrustSecurity />
       <Cta />
       <Footer />
     </div>
